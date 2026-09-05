@@ -25,6 +25,7 @@ import { FloatingTelegraphKey } from './components/FloatingTelegraphKey';
 import { PracticePanel } from './components/PracticePanel';
 import { RhythmAnalyticsModal } from './components/RhythmAnalyticsModal';
 import { SettingsModal } from './components/SettingsModal';
+import { ShareModal } from './components/ShareModal';
 import { DEFAULT_KEY_BINDING, isEventMatchingKey } from './utils/keyBindingUtils';
 import {
   Settings,
@@ -36,6 +37,7 @@ import {
   Volume2,
   Keyboard,
   ExternalLink,
+  Share2,
 } from 'lucide-react';
 
 const DEFAULT_SETTINGS: TrainerSettings = {
@@ -96,6 +98,7 @@ export default function App() {
   const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
 
   // References for live timing
   const pressStartTimeRef = useRef<number | null>(null);
@@ -382,6 +385,18 @@ export default function App() {
               )}
             </button>
 
+            {/* Share Modal Button */}
+            <button
+              type="button"
+              id="open-share-button"
+              onClick={() => setIsShareOpen(true)}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 text-xs font-semibold transition-all active:scale-95 shadow-sm"
+              title="分享到微信、X、小红书等社交媒体"
+            >
+              <Share2 className="w-4 h-4 text-amber-400" />
+              <span className="hidden sm:inline">分享</span>
+            </button>
+
             {/* Settings Modal Button */}
             <button
               type="button"
@@ -517,6 +532,7 @@ export default function App() {
             setChallengeCharStep(0);
           }}
           charChallengeStep={challengeCharStep}
+          onOpenShare={() => setIsShareOpen(true)}
         />
       </main>
 
@@ -542,6 +558,14 @@ export default function App() {
         onClearHistory={handleClearHistory}
       />
 
+      {/* Share Modal */}
+      <ShareModal
+        isOpen={isShareOpen}
+        onClose={() => setIsShareOpen(false)}
+        stats={stats}
+        settings={settings}
+      />
+
       {/* Settings Modal */}
       <SettingsModal
         isOpen={isSettingsOpen}
@@ -564,6 +588,15 @@ export default function App() {
           <span>在线预览: morse.ykx-uas.com</span>
           <ExternalLink className="w-3.5 h-3.5" />
         </a>
+        <span className="hidden sm:inline text-neutral-700">|</span>
+        <button
+          type="button"
+          onClick={() => setIsShareOpen(true)}
+          className="text-neutral-400 hover:text-amber-300 hover:underline transition-colors flex items-center gap-1 font-semibold cursor-pointer"
+        >
+          <Share2 className="w-3.5 h-3.5 text-amber-400" />
+          <span>分享到微信 / X / 小红书</span>
+        </button>
       </footer>
     </div>
   );

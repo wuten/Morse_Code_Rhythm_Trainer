@@ -7,7 +7,7 @@ import {
 } from '../types';
 import { CHALLENGE_LEVELS, MORSE_MAP } from '../utils/morseTreeData';
 import { morseAudio } from '../utils/morseAudio';
-import { Volume2, Play, CheckCircle2, RotateCcw, Copy, Trash2, ArrowRight } from 'lucide-react';
+import { Volume2, Play, CheckCircle2, RotateCcw, Copy, Trash2, ArrowRight, Share2 } from 'lucide-react';
 
 interface PracticePanelProps {
   mode: PracticeMode;
@@ -23,6 +23,7 @@ interface PracticePanelProps {
   challengeIndex: number;
   onSelectChallenge: (index: number) => void;
   charChallengeStep: number;
+  onOpenShare?: () => void;
 }
 
 export const PracticePanel: React.FC<PracticePanelProps> = ({
@@ -39,6 +40,7 @@ export const PracticePanel: React.FC<PracticePanelProps> = ({
   challengeIndex,
   onSelectChallenge,
   charChallengeStep,
+  onOpenShare,
 }) => {
   const [copySuccess, setCopySuccess] = useState(false);
   const currentChallenge = CHALLENGE_LEVELS[challengeIndex] || CHALLENGE_LEVELS[0];
@@ -264,6 +266,16 @@ export const PracticePanel: React.FC<PracticePanelProps> = ({
           </div>
 
           <div className="flex items-center gap-1.5">
+            {onOpenShare && (
+              <button
+                type="button"
+                onClick={onOpenShare}
+                className="p-1.5 rounded hover:bg-neutral-800 text-amber-400 hover:text-amber-300 transition-colors"
+                title="分享练习记录与网站"
+              >
+                <Share2 className="w-3.5 h-3.5" />
+              </button>
+            )}
             <button
               type="button"
               onClick={handleCopyText}
