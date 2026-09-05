@@ -1,0 +1,8 @@
+{
+  "name": "Remix Morse Code Rhythm Trainer",
+  "description": "An interactive Morse code telegraph trainer featuring an interactive PCB dichotomous tree card, real-time rhythm error detection, audio sidetone, and accuracy analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
