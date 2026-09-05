@@ -35,6 +35,7 @@ import {
   Sparkles,
   Volume2,
   Keyboard,
+  ExternalLink,
 } from 'lucide-react';
 
 const DEFAULT_SETTINGS: TrainerSettings = {
@@ -550,8 +551,19 @@ export default function App() {
       />
 
       {/* Footer */}
-      <footer className="border-t border-neutral-800/60 py-3 px-4 text-center text-xs text-neutral-500 font-mono">
-        Morse Code Rhythm Trainer · 交互式莫尔斯电码节奏与二叉树卡片练习器 · 支持 PC 自定义电键与移动端悬浮电键
+      <footer className="border-t border-neutral-800/60 py-3.5 px-4 text-center text-xs text-neutral-500 font-mono flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+        <span>Morse Code Rhythm Trainer · 交互式莫尔斯电码节奏与二叉树卡片练习器</span>
+        <span className="hidden sm:inline text-neutral-700">|</span>
+        <a
+          href="https://morse.ykx-uas.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-amber-500 hover:text-amber-400 hover:underline transition-colors flex items-center gap-1 font-semibold"
+          title="访问在线预览地址"
+        >
+          <span>在线预览: morse.ykx-uas.com</span>
+          <ExternalLink className="w-3.5 h-3.5" />
+        </a>
       </footer>
     </div>
   );
